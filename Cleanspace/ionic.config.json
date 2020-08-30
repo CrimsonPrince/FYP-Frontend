@@ -1,5 +1,7 @@
 {
   "name": "Cleanspace",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

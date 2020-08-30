@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 
 import 'mapbox-gl';
 import 'mapbox-gl-leaflet';
+import 'leaflet.markercluster'
 
 @Component({
   selector: 'app-tab2',
@@ -20,245 +21,31 @@ export class Tab2Page {
     }
    // The below function is added
     loadMap() {
+      let addressPoints = [
+        {"id": "AD-1", "country": "AD", "city": "Escaldes-Engordany", "cities": ["Escaldes-Engordany"], "location": "AD0942A", "locations": ["AD0942A"], "sourceName": "EEA Andorra", "sourceNames": ["EEA Andorra"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 1.53914, "latitude": 42.50969}, "firstUpdated": "2017-09-13T21:00:00.000Z", "lastUpdated": "2020-07-22T12:00:00.000Z", "parameters": ["co", "no2", "o3", "pm10", "so2"], "countsByMeasurement": [{"parameter": "co", "count": 20174}, {"parameter": "no2", "count": 19881}, {"parameter": "o3", "count": 20231}, {"parameter": "pm10", "count": 20433}, {"parameter": "so2", "count": 19934}], "count": 100653}, {"id": "AD-2", "country": "AD", "city": "Escaldes-Engordany", "cities": ["Escaldes-Engordany"], "location": "AD0944A", "locations": ["AD0944A"], "sourceName": "EEA Andorra", "sourceNames": ["EEA Andorra"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 1.56525, "latitude": 42.51694}, "firstUpdated": "2017-09-13T21:00:00.000Z", "lastUpdated": "2020-07-22T12:00:00.000Z", "parameters": ["o3"], "countsByMeasurement": [{"parameter": "o3", "count": 20027}], "count": 20027}, {"id": "AD-3", "country": "AD", "city": "unused", "cities": ["unused"], "location": "AD0945A", "locations": ["AD0945A"], "sourceName": "EEA Andorra", "sourceNames": ["EEA Andorra"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 1.71699, "latitude": 42.53488}, "firstUpdated": "2017-09-14T00:00:00.000Z", "lastUpdated": "2020-07-22T12:00:00.000Z", "parameters": ["o3"], "countsByMeasurement": [{"parameter": "o3", "count": 9964}], "count": 9964}, {"id": "AE-1", "country": "AE", "city": "Abu Dhabi", "cities": ["Abu Dhabi"], "location": "US Diplomatic Post: Abu Dhabi", "locations": ["US Diplomatic Post: Abu Dhabi"], "sourceName": "StateAir_AbuDhabi", "sourceNames": ["StateAir_AbuDhabi"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 54.43375, "latitude": 24.4244}, "firstUpdated": "2017-12-26T22:00:00.000Z", "lastUpdated": "2020-07-22T12:00:00.000Z", "parameters": ["o3", "pm25"], "countsByMeasurement": [{"parameter": "o3", "count": 17594}, {"parameter": "pm25", "count": 21344}], "count": 38938}, {"id": "AE-2", "country": "AE", "city": "Dubai", "cities": ["Dubai", "N/A"], "location": "US Diplomatic Post: Dubai", "locations": ["US Diplomatic Post: Dubai", "Dubai"], "sourceName": "StateAir_Dubai", "sourceNames": ["StateAir_Dubai", "AirNow"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 55.30917, "latitude": 25.25848}, "firstUpdated": "2018-07-27T15:00:00.000Z", "lastUpdated": "2020-07-22T12:00:00.000Z", "parameters": ["o3", "pm25"], "countsByMeasurement": [{"parameter": "o3", "count": 20757}, {"parameter": "pm25", "count": 22716}], "count": 43473}, {"id": "AE-3", "country": "AE", "city": "N/A", "cities": ["N/A"], "location": "Abu Dhabi", "locations": ["Abu Dhabi"], "sourceName": "AirNow", "sourceNames": ["AirNow"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 54.43387, "latitude": 24.42431}, "firstUpdated": "2019-10-28T18:00:00.000Z", "lastUpdated": "2020-07-21T19:00:00.000Z", "parameters": ["o3", "pm25"], "countsByMeasurement": [{"parameter": "o3", "count": 4549}, {"parameter": "pm25", "count": 5246}], "count": 9795}, {"id": "AF-1", "country": "AF", "city": "Kabul", "cities": ["Kabul"], "location": "US Diplomatic Post: Kabul", "locations": ["US Diplomatic Post: Kabul"], "sourceName": "StateAir_Kabul", "sourceNames": ["StateAir_Kabul"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 69.19051, "latitude": 34.53581}, "firstUpdated": "2019-10-20T22:30:00.000Z", "lastUpdated": "2020-07-22T12:30:00.000Z", "parameters": ["pm25"], "countsByMeasurement": [{"parameter": "pm25", "count": 7159}], "count": 7159}, {"id": "AF-2", "country": "AF", "city": "N/A", "cities": ["N/A"], "location": "Kabul", "locations": ["Kabul"], "sourceName": "AirNow", "sourceNames": ["AirNow"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 69.2046, "latitude": 34.55438}, "firstUpdated": "2019-10-28T18:30:00.000Z", "lastUpdated": "2020-07-22T11:30:00.000Z", "parameters": ["pm25"], "countsByMeasurement": [{"parameter": "pm25", "count": 5015}], "count": 5015}, {"id": "AG-1", "country": "AG", "city": "N/A", "cities": ["N/A"], "location": "Algiers", "locations": ["Algiers"], "sourceName": "AirNow", "sourceNames": ["AirNow"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 3.03911, "latitude": 36.7558}, "firstUpdated": "2020-03-17T17:00:00.000Z", "lastUpdated": "2020-03-17T17:00:00.000Z", "parameters": ["pm25"], "countsByMeasurement": [{"parameter": "pm25", "count": 1}], "count": 1}, {"id": "AR-2", "country": "AR", "city": "Buenos Aires", "cities": ["Buenos Aires"], "location": "CENTENARIO", "locations": ["CENTENARIO"], "sourceName": "Buenos Aires", "sourceNames": ["Buenos Aires"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": -58.43194, "latitude": -34.60638}, "firstUpdated": "2017-08-10T16:00:00.000Z", "lastUpdated": "2017-10-19T03:00:00.000Z", "parameters": ["co", "no2", "pm10"], "countsByMeasurement": [{"parameter": "co", "count": 1392}, {"parameter": "no2", "count": 1392}, {"parameter": "pm10", "count": 1392}], "count": 4176}, {"id": "AR-4", "country": "AR", "city": "Buenos Aires", "cities": ["Buenos Aires"], "location": "CORDOBA", "locations": ["CORDOBA"], "sourceName": "Buenos Aires", "sourceNames": ["Buenos Aires"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": -58.39165, "latitude": -34.60442}, "firstUpdated": "2017-08-10T16:00:00.000Z", "lastUpdated": "2017-10-19T03:00:00.000Z", "parameters": ["co", "no2", "pm10"], "countsByMeasurement": [{"parameter": "co", "count": 1392}, {"parameter": "no2", "count": 1392}, {"parameter": "pm10", "count": 1392}], "count": 4176}, {"id": "AR-3", "country": "AR", "city": "Buenos Aires", "cities": ["Buenos Aires"], "location": "LA BOCA", "locations": ["LA BOCA"], "sourceName": "Buenos Aires", "sourceNames": ["Buenos Aires"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": -58.36555, "latitude": -34.62527}, "firstUpdated": "2017-08-10T16:00:00.000Z", "lastUpdated": "2017-10-19T03:00:00.000Z", "parameters": ["co", "no2", "pm10"], "countsByMeasurement": [{"parameter": "co", "count": 1392}, {"parameter": "no2", "count": 1392}, {"parameter": "pm10", "count": 1392}], "count": 4176}, {"id": "AR-1", "country": "AR", "city": "Buenos Aires", "cities": ["Buenos Aires"], "location": "SPARTAN - CITEDEF", "locations": ["SPARTAN - CITEDEF"], "sourceName": "Spartan", "sourceNames": ["Spartan"], "sourceType": "research", "sourceTypes": ["research"], "coordinates": {"longitude": -58.506, "latitude": -34.56}, "firstUpdated": "2014-10-02T12:00:00.000Z", "lastUpdated": "2015-04-15T00:00:00.000Z", "parameters": ["pm25"], "countsByMeasurement": [{"parameter": "pm25", "count": 2448}], "count": 2448}, {"id": "AT-204", "country": "AT", "city": "Amt der K\ufffdrntner Landesregierung", "cities": ["Amt der K\ufffdrntner Landesregierung"], "location": "Klagenfurt A2 Nordumfahrung ", "locations": ["Klagenfurt A2 Nordumfahrung "], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.26889, "latitude": 46.65278}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-02-24T10:00:00.000Z", "parameters": ["no2"], "countsByMeasurement": [{"parameter": "no2", "count": 148}], "count": 148}, {"id": "AT-349", "country": "AT", "city": "Amt der K\ufffdrntner Landesregierung", "cities": ["Amt der K\ufffdrntner Landesregierung"], "location": "Klagenfurt A2 Nordumfahrung 2", "locations": ["Klagenfurt A2 Nordumfahrung 2"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.26611, "latitude": 46.65306}, "firstUpdated": "2017-06-30T00:00:00.000Z", "lastUpdated": "2017-06-30T12:00:00.000Z", "parameters": ["no2"], "countsByMeasurement": [{"parameter": "no2", "count": 13}], "count": 13}, {"id": "AT-286", "country": "AT", "city": "Amt der K\ufffdrntner Landesregierung", "cities": ["Amt der K\ufffdrntner Landesregierung"], "location": "St. Andr\ufffd i. L. Volksschule", "locations": ["St. Andr\ufffd i. L. Volksschule"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.82222, "latitude": 46.76389}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["pm10"], "countsByMeasurement": [{"parameter": "pm10", "count": 2959}], "count": 2959}, {"id": "AT-306", "country": "AT", "city": "Amt der K\ufffdrntner Landesregierung", "cities": ["Amt der K\ufffdrntner Landesregierung"], "location": "St. Veit a. d. Glan Hauptbahnhof", "locations": ["St. Veit a. d. Glan Hauptbahnhof"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.36583, "latitude": 46.77111}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-05-11T19:00:00.000Z", "parameters": ["pm10"], "countsByMeasurement": [{"parameter": "pm10", "count": 1579}], "count": 1579}, {"id": "AT-297", "country": "AT", "city": "Amt der Nieder\ufffdsterreichischen Landesregierung", "cities": ["Amt der Nieder\ufffdsterreichischen Landesregierung"], "location": "Mannsw\ufffdrth bei Schwechat, Danubiastra\ufffde/A4", "locations": ["Mannsw\ufffdrth bei Schwechat, Danubiastra\ufffde/A4"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 16.51111, "latitude": 48.145}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 2971}, {"parameter": "pm10", "count": 2965}], "count": 5936}, {"id": "AT-260", "country": "AT", "city": "Amt der Ober\ufffdsterreichischen Landesregierung", "cities": ["Amt der Ober\ufffdsterreichischen Landesregierung"], "location": "Lenzing Winterstrasse", "locations": ["Lenzing", "Lenzing Winterstrasse"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 13.60083, "latitude": 47.97194}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "o3", "pm10", "so2"], "countsByMeasurement": [{"parameter": "no2", "count": 2971}, {"parameter": "o3", "count": 2967}, {"parameter": "pm10", "count": 823}, {"parameter": "so2", "count": 2964}], "count": 9725}, {"id": "AT-307", "country": "AT", "city": "Amt der Salzburger Landesregierung", "cities": ["Amt der Salzburger Landesregierung"], "location": "Zederhaus A10", "locations": ["Zederhaus A10"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 13.50508, "latitude": 47.15407}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "o3", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 2971}, {"parameter": "o3", "count": 2968}, {"parameter": "pm10", "count": 2965}], "count": 8904}, {"id": "AT-239", "country": "AT", "city": "Amt der Steierm\ufffdrkischen Landesregierung", "cities": ["Amt der Steierm\ufffdrkischen Landesregierung"], "location": "Liezen Alte Gasse 8", "locations": ["Liezen Alte Gasse 8"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.24361, "latitude": 47.56722}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "o3", "pm10", "so2"], "countsByMeasurement": [{"parameter": "no2", "count": 2972}, {"parameter": "o3", "count": 2967}, {"parameter": "pm10", "count": 2965}, {"parameter": "so2", "count": 2964}], "count": 11868}, {"id": "AT-344", "country": "AT", "city": "Amt der Steierm\ufffdrkischen Landesregierung", "cities": ["Amt der Steierm\ufffdrkischen Landesregierung"], "location": "Peggau", "locations": ["Peggau"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 15.34583, "latitude": 47.20639}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 2969}, {"parameter": "pm10", "count": 2965}], "count": 5934}, {"id": "AT-333", "country": "AT", "city": "Amt der Steierm\ufffdrkischen Landesregierung", "cities": ["Amt der Steierm\ufffdrkischen Landesregierung"], "location": "Weiz Birkfelder Stra\ufffde", "locations": ["Weiz Birkfelder Stra\ufffde"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 15.62833, "latitude": 47.21722}, "firstUpdated": "2017-02-18T07:00:00.000Z", "lastUpdated": "2017-07-20T19:00:00.000Z", "parameters": ["no2", "o3", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 2972}, {"parameter": "o3", "count": 2968}, {"parameter": "pm10", "count": 2965}], "count": 8905}, {"id": "AT-16", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Amstetten", "locations": ["Amstetten"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 14.87916, "latitude": 48.12029}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["no2", "o3", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 272}, {"parameter": "o3", "count": 271}, {"parameter": "pm10", "count": 284}], "count": 827}, {"id": "AT-15", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Annaberg - Joachimsberg", "locations": ["Annaberg - Joachimsberg"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 15.32193, "latitude": 47.85527}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["o3"], "countsByMeasurement": [{"parameter": "o3", "count": 268}], "count": 268}, {"id": "AT-89", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Arnfels - Remschnigg", "locations": ["Arnfels - Remschnigg"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 15.36775, "latitude": 46.65197}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["o3", "so2"], "countsByMeasurement": [{"parameter": "o3", "count": 239}, {"parameter": "so2", "count": 254}], "count": 493}, {"id": "AT-145", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Arnoldstein Gailitz Waldsiedlungsstra\u00dfe", "locations": ["Arnoldstein Gailitz Waldsiedlungsstra\u00dfe"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 13.70497, "latitude": 46.5589}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["o3", "pm10", "so2"], "countsByMeasurement": [{"parameter": "o3", "count": 256}, {"parameter": "pm10", "count": 271}, {"parameter": "so2", "count": 254}], "count": 781}, {"id": "AT-125", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Bad Ischl", "locations": ["Bad Ischl"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 13.63283, "latitude": 47.71669}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["no2", "o3", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 255}, {"parameter": "o3", "count": 250}, {"parameter": "pm10", "count": 269}], "count": 774}, {"id": "AT-150", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Bad V\u00f6slau - Gainfarn", "locations": ["Bad V\u00f6slau - Gainfarn"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 16.20695, "latitude": 47.95998}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["no2", "o3", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 272}, {"parameter": "o3", "count": 271}, {"parameter": "pm10", "count": 284}], "count": 827}, {"id": "AT-131", "country": "AT", "city": "Austria", "cities": ["Austria"], "location": "Biedermannsdorf M\u00fchlengasse", "locations": ["Biedermannsdorf M\u00fchlengasse"], "sourceName": "EEA Austria", "sourceNames": ["EEA Austria"], "sourceType": "government", "sourceTypes": ["government"], "coordinates": {"longitude": 16.33721, "latitude": 48.08334}, "firstUpdated": "2016-11-18T05:00:00.000Z", "lastUpdated": "2016-12-12T09:00:00.000Z", "parameters": ["no2", "pm10"], "countsByMeasurement": [{"parameter": "no2", "count": 271}, {"parameter": "pm10", "count": 284}], "count": 555}
 
-      var token ="pk.eyJ1IjoiY3JpbXNvbnByaW5jZSIsImEiOiJjazQyejZmajAwMmN6M2tsa211bW42bm84In0.ygXb37nll4_Y7PqqQy9JFw"; // replace with your Mapbox API Access token. Create a Mapbox account and find it on https://account.mapbox.com/
+      ]
 
-      var map = L.map('map').setView([38.912753, -77.032194], 15);
+      var token ="pk.eyJ1IjoiY3JpbXNvbnByaW5jZSIsImEiOiJjazQyejZmajAwMmN6M2tsa211bW42bm84In0.ygXb37nll4_Y7PqqQy9JFw";
+
+      var map = L.map('map').setView([38.912753, -77.032194], 6).setMinZoom(2).setMaxZoom(25);
       var gl = L.mapboxGL({
           accessToken: token,
           style: 'mapbox://styles/mapbox/light-v10'
       }).addTo(map);
 
 
-      map.addControl(new L.mapboxgl.NavigationControl());
+      var markers = L.markerClusterGroup({showCoverageOnHover: false});
 
-      // filters for classifying earthquakes into five categories based on magnitude
-      var mag1 = ['<', ['get', 'mag'], 2];
-      var mag2 = ['all', ['>=', ['get', 'mag'], 2], ['<', ['get', 'mag'], 3]];
-      var mag3 = ['all', ['>=', ['get', 'mag'], 3], ['<', ['get', 'mag'], 4]];
-      var mag4 = ['all', ['>=', ['get', 'mag'], 4], ['<', ['get', 'mag'], 5]];
-      var mag5 = ['>=', ['get', 'mag'], 5];
-
-      // colors to use for the categories
-      var colors = ['#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c'];
-
-      map.on('load', function() {
-      // add a clustered GeoJSON source for a sample set of earthquakes
-      map.addSource('earthquakes', {
-      'type': 'geojson',
-      'data':
-      'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
-      'cluster': true,
-      'clusterRadius': 80,
-      'clusterProperties': {
-      // keep separate counts for each magnitude category in a cluster
-      'mag1': ['+', ['case', mag1, 1, 0]],
-      'mag2': ['+', ['case', mag2, 1, 0]],
-      'mag3': ['+', ['case', mag3, 1, 0]],
-      'mag4': ['+', ['case', mag4, 1, 0]],
-      'mag5': ['+', ['case', mag5, 1, 0]]
-      }
-      });
-      // circle and symbol layers for rendering individual earthquakes (unclustered points)
-      map.addLayer({
-      'id': 'earthquake_circle',
-      'type': 'circle',
-      'source': 'earthquakes',
-      'filter': ['!=', 'cluster', true],
-      'paint': {
-      'circle-color': [
-      'case',
-      mag1,
-      colors[0],
-      mag2,
-      colors[1],
-      mag3,
-      colors[2],
-      mag4,
-      colors[3],
-      colors[4]
-      ],
-      'circle-opacity': 0.6,
-      'circle-radius': 12
-      }
-      });
-      map.addLayer({
-      'id': 'earthquake_label',
-      'type': 'symbol',
-      'source': 'earthquakes',
-      'filter': ['!=', 'cluster', true],
-      'layout': {
-      'text-field': [
-      'number-format',
-      ['get', 'mag'],
-      { 'min-fraction-digits': 1, 'max-fraction-digits': 1 }
-      ],
-      'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-      'text-size': 10
-      },
-      'paint': {
-      'text-color': [
-      'case',
-      ['<', ['get', 'mag'], 3],
-      'black',
-      'white'
-      ]
-      }
-      });
-
-      // objects for caching and keeping track of HTML marker objects (for performance)
-      var markers = {};
-      var markersOnScreen = {};
-
-      function updateMarkers() {
-      var newMarkers = {};
-      var features = map.querySourceFeatures('earthquakes');
-
-      // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
-      // and add it to the map if it's not there already
-      for (var i = 0; i < features.length; i++) {
-      var coords = features[i].geometry.coordinates;
-      var props = features[i].properties;
-      if (!props.cluster) continue;
-      var id = props.cluster_id;
-
-      var marker = markers[id];
-      if (!marker) {
-      var el = createDonutChart(props);
-      marker = markers[id] = new L.mapboxgl.Marker({
-      element: el
-      }).setLngLat(coords);
-      }
-      newMarkers[id] = marker;
-
-      if (!markersOnScreen[id]) marker.addTo(map);
-      }
-      // for every marker we've added previously, remove those that are no longer visible
-      for (id in markersOnScreen) {
-      if (!newMarkers[id]) markersOnScreen[id].remove();
-      }
-      markersOnScreen = newMarkers;
+      for (var i = 0; i < addressPoints.length; i++) {
+          var a = addressPoints[i];
+          var title = a.id;
+          var marker = L.circleMarker(new L.LatLng(a.coordinates.latitude, a.coordinates.longitude));
+          marker.bindPopup(title);
+          markers.addLayer(marker);
       }
 
-      // after the GeoJSON data is loaded, update markers on the screen and do so on every map move/moveend
-      map.on('data', function(e) {
-      if (e.sourceId !== 'earthquakes' || !e.isSourceLoaded) return;
-
-      map.on('move', updateMarkers);
-      map.on('moveend', updateMarkers);
-      updateMarkers();
-      });
-      });
-
-      // code for creating an SVG donut chart from feature properties
-      function createDonutChart(props) {
-      var offsets = [];
-      var counts = [
-      props.mag1,
-      props.mag2,
-      props.mag3,
-      props.mag4,
-      props.mag5
-      ];
-      var total = 0;
-      for (var i = 0; i < counts.length; i++) {
-      offsets.push(total);
-      total += counts[i];
-      }
-      var fontSize =
-      total >= 1000 ? 22 : total >= 100 ? 20 : total >= 10 ? 18 : 16;
-      var r = total >= 1000 ? 50 : total >= 100 ? 32 : total >= 10 ? 24 : 18;
-      var r0 = Math.round(r * 0.6);
-      var w = r * 2;
-
-      var html =
-      '<div><svg width="' +
-      w +
-      '" height="' +
-      w +
-      '" viewbox="0 0 ' +
-      w +
-      ' ' +
-      w +
-      '" text-anchor="middle" style="font: ' +
-      fontSize +
-      'px sans-serif; display: block">';
-
-      for (i = 0; i < counts.length; i++) {
-      html += donutSegment(
-      offsets[i] / total,
-      (offsets[i] + counts[i]) / total,
-      r,
-      r0,
-      colors[i]
-      );
-      }
-      html +=
-      '<circle cx="' +
-      r +
-      '" cy="' +
-      r +
-      '" r="' +
-      r0 +
-      '" fill="white" /><text dominant-baseline="central" transform="translate(' +
-      r +
-      ', ' +
-      r +
-      ')">' +
-      total.toLocaleString() +
-      '</text></svg></div>';
-
-      var el = document.createElement('div');
-      el.innerHTML = html;
-      return el.firstChild;
-      }
-
-      function donutSegment(start, end, r, r0, color) {
-      if (end - start === 1) end -= 0.00001;
-      var a0 = 2 * Math.PI * (start - 0.25);
-      var a1 = 2 * Math.PI * (end - 0.25);
-      var x0 = Math.cos(a0),
-      y0 = Math.sin(a0);
-      var x1 = Math.cos(a1),
-      y1 = Math.sin(a1);
-      var largeArc = end - start > 0.5 ? 1 : 0;
-
-      return [
-      '<path d="M',
-      r + r0 * x0,
-      r + r0 * y0,
-      'L',
-      r + r * x0,
-      r + r * y0,
-      'A',
-      r,
-      r,
-      0,
-      largeArc,
-      1,
-      r + r * x1,
-      r + r * y1,
-      'L',
-      r + r0 * x1,
-      r + r0 * y1,
-      'A',
-      r0,
-      r0,
-      0,
-      largeArc,
-      0,
-      r + r0 * x0,
-      r + r0 * y0,
-      '" fill="' + color + '" />'
-      ].join(' ');
-      }
-
-
-    // this.map = new Map("mapId").setView([17.3850,78.4867], 13);
-
-    // tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //   { attribution: 'Map data © <a href="https://www.openstreetmap.org/"> OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY- SA</a>'}).addTo(this.map);
-    // }
+      map.addLayer(markers);
     }
 
 }
