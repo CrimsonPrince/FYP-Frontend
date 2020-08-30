@@ -24,8 +24,11 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@types/leaflet": "^1.5.17",
+    "@types/mapbox-gl-leaflet": "0.0.1",
     "d3": "^6.1.0",
     "leaflet": "^1.6.0",
+    "mapbox-gl": "^1.12.0",
+    "mapbox-gl-leaflet": "0.0.12",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
