@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="map" ></div>
+  <div id="map"
+  leaflet
+  [leafletOptions]="options"
+  (leafletMapReady)="onMapReady($event)"
+  (resized)="onResized()">
+</div>
 </ion-content>
