@@ -1,14 +1,10 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Countries
-    </ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let country of countries">
-    <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png1000px/{{country.code | lowercase }}.png" />
+    <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png1000px/{{country.code | lowercase }}.png" style="border: none; width: 100%;"/>
     <ion-card-header>
       <ion-card-title>{{country.name}}</ion-card-title>
     </ion-card-header>
