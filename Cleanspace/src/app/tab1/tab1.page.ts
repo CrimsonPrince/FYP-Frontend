@@ -22,15 +22,7 @@ export class Tab1Page {
     { season: '5hr', viewers: 3.6392103 },
     { season: '6hr', viewers: 2.86216995 },
     { season: '7hr', viewers: 5.44915933 },
-    { season: '8hr', viewers: 0.348 },
-    { season: '9hr', viewers: 1.72 },
-    { season: '10hr', viewers: 2.33825 },
-    { season: '11hr', viewers: 3.9217603 },
-    { season: '12hr', viewers: 3.3 },
-    { season: '13hr', viewers: 3.6392103 },
-    { season: '14hr', viewers: 2.86216995 },
-    { season: '15hr', viewers: 5.44915933 },
-    { season: '16hr', viewers: 0.348 }
+    { season: '8hr', viewers: 0.348 }
   ];
   title = 'Dublin';
   subtitle = 'Air Quality Data in last 8 Hours';
@@ -49,6 +41,13 @@ export class Tab1Page {
 
   ionViewDidEnter() {
     this.init();
+    this.initAxes();
+    this.drawAxes();
+    this.drawChart();
+  }
+
+  ionViewDidLeave() {
+    this.svg.remove();
   }
 
   init() {
@@ -59,6 +58,7 @@ export class Tab1Page {
       .attr('viewBox', '0 0 900 500');
     this.g = this.svg.append('g')
       .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+
   }
 
   initAxes() {
