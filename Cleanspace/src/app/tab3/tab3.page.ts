@@ -17,7 +17,7 @@ export class Tab3Page {
   }
 
   private url: string;
-  private countries: any[] = [];
+  public countries: any[] = [];
 
   getData() {
     this.url = "http://api.r4.ie/countries";
