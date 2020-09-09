@@ -84,7 +84,7 @@ export class Tab1Page {
   }
 
   getData(type) {
-    this.url = "http://localhost:3000/cities/Dublin%20City/" + type;
+    this.url = "https://api.r4.ie/cities/Dublin%20City/" + type;
     console.log(this.url)
     return this.http.get<any[]>(this.url);
   }
