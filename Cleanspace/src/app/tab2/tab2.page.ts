@@ -24,7 +24,7 @@ export class Tab2Page {
     }
 
     getData(type: string) {
-      this.url = "http://localhost:3000/measurements/";
+      this.url = "http://api.r4.ie/measurements/";
       let uri: string;
       uri = this.url.concat(type.toString());
       console.log(uri)

@@ -20,7 +20,7 @@ export class Tab3Page {
   private countries: any[] = [];
 
   getData() {
-    this.url = "http://localhost:3000/countries";
+    this.url = "http://api.r4.ie/countries";
     return this.http.get<any[]>(this.url);
   }
 
