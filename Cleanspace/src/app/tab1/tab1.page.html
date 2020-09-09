@@ -12,7 +12,12 @@
     </ion-card-header>
     <ion-card-content>
       <div id="barChart"></div>
-      <div id="lineChart"></div>
     </ion-card-content>
   </ion-card>
+  <ion-select value="co" okText="Okay" cancelText="Dismiss" #C (ionChange)="onChange(C.value)">
+    <ion-select-option value="co">CO</ion-select-option>
+    <ion-select-option value="o3">O3</ion-select-option>
+    <ion-select-option value="pm25">PM25</ion-select-option>
+    <ion-select-option value="pm10">PM10</ion-select-option>
+  </ion-select>
 </ion-content>

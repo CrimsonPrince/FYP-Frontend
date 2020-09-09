@@ -28,6 +28,7 @@
     "@types/leaflet.markercluster": "^1.4.2",
     "@types/mapbox-gl-leaflet": "0.0.1",
     "d3": "^6.1.0",
+    "d3-time": "^2.0.0",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "mapbox-gl": "^1.12.0",
