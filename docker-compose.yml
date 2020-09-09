@@ -1,15 +1,15 @@
 version: '3.3'
 services:
   cleanspace-frontend:
-    image: crimsonprince/fyp-frontend
+    image: crimsonprince/fypfrontend
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.cleanspace-frontend-https.redirectscheme.scheme=https"
       - "traefik.http.routers.cleanspace-frontend-http.entrypoints=web"
-      - "traefik.http.routers.cleanspace-frontend-http.rule=Host(`fyp.r4.ie`)"
+      - "traefik.http.routers.cleanspace-frontend-http.rule=Host(`cleanspace.r4.ie`)"
       - "traefik.http.routers.cleanspace-frontend-http.middlewares=cleanspace-frontend-https@docker"
       - "traefik.http.routers.cleanspace-frontend.entrypoints=web-secure"
-      - "traefik.http.routers.cleanspace-frontend.rule=Host(`fyp.r4.ie`)"
+      - "traefik.http.routers.cleanspace-frontend.rule=Host(`cleanspace.r4.ie`)"
       - "traefik.http.routers.cleanspace-frontend.tls=true"
       - "traefik.http.routers.cleanspace-frontend.tls.certresolver=default"
     networks:
