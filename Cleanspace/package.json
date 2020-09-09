@@ -1,8 +1,8 @@
 {
   "name": "Cleanspace",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Arthur Coll",
+  "homepage": "arthurcoll.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -61,5 +61,5 @@
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
   },
-  "description": "An Ionic project"
+  "description": "An Air Quality App"
 }
